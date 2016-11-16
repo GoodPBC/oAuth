@@ -1,0 +1,23 @@
+{
+  "name": "express-o-auth",
+  "version": "1.0.0",
+  "description": "An express passport oauth framework for future projects",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodPBC/oAuth.git"
+  },
+  "author": "joseph pulaski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GoodPBC/oAuth/issues"
+  },
+  "homepage": "https://github.com/GoodPBC/oAuth#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}
