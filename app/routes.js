@@ -6,7 +6,7 @@ var User = require('./models/user');
 module.exports = function(app) {
 	app.get('/', function(req, res) {
 		//res.send('hello world'); //intial route
-		res.render('index.ejs')
+		res.render('index.ejs');
 	});
 
 
@@ -15,10 +15,10 @@ module.exports = function(app) {
 		res.render('signup.ejs', {message: 'Victory'})
 	});
 
-	// this post route is create to handle the actual submitting of the data to the server  from the form on the signup route.
-	// we copy from the route below and change .params to .body becuase the boyparser puts our form data into the request.body object and so we can get it from the request object on every transaction
-	
+	// this post route is created to handle the actual submitting of the form data to POST to the server  from the form on the signup route. which is templated in 
+	// we copy from the route below and change .params to .body becuase the bodyparser puts our form data into the request.body object and so we can get it from the request object on every transaction
 	app.post('/signup', function(req, res) {
+		debugger;
 		var newUser = new User();
 		newUser.local.username = req.body.email;
 		newUser.local.password = req.body.password;
@@ -27,6 +27,7 @@ module.exports = function(app) {
 				throw err;
 			}
 		}); 
+		res.redirect('/');	
 	});
 
 

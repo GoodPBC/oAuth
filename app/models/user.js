@@ -10,5 +10,5 @@ var userSchema = mongoose.Schema({
 	}
 });
 
-//we export it so we can access it elsewhere by requiring it
-module.exports = mongoose.model('User', userSchema);
+//we export our model so we can access it elsewhere by requiring it
+module.exports = mongoose.model('users', userSchema);

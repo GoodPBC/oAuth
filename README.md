@@ -18,7 +18,7 @@ An express passport oauth framework for future projects
 	
 	3. we create our server and our first route for a hello world that prints "hello world" to the browser
 
-#Phase 2 
+#Phase 2 Cookie Parser & Express Session
 	1. install cookie-parser
 		- on the command line enter "npm install cookie-parser --save"
 
@@ -50,7 +50,7 @@ An express passport oauth framework for future projects
      			httpOnly: true } }
 
 
-#Phase 3
+#Phase 3 Mongoose & Advanced Routing
 	
 	1. change the directory sturcture of your application
 		-add  "app" directory inside app create models directory and routes.js file
@@ -75,10 +75,10 @@ An express passport oauth framework for future projects
 
 		-in this step we comment out our original "app.get('/')" and we replace it with telling our server to look at our routes file in the models folder. 
 
-		-in models we define 2 new routes on is the home route and the second is the user route that takes in params
+		-in models we define 2 new routes one is the home route and the second is the user route that takes in params
 
 
-#phase 4 
+#phase 4 EJS Templating & views
 	1. npm install ejs which is a templating engine 
 		-http://www.embeddedjs.com/
 	2. install body-parser.
@@ -93,6 +93,6 @@ An express passport oauth framework for future projects
 
 	5. we navigate to the routes folder to edit our default route. we will update our res.send('Hello World') and instead we will res.render to render our ejs template -- when this is done fire up your server and navigate to your home page to make sure you are seeing your index template.
 
-	6. create the sign up route in your routes file
+	6. create the sign up route in your routes file. We will switch params to body to handle the form requests. The sign up route is post route. we are sending 
 
 	
