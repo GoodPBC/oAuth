@@ -77,5 +77,15 @@ An express passport oauth framework for future projects
 
 		-in models we define 2 new routes on is the home route and the second is the user route that takes in params
 
-	
+
+#phase 4 
+	1. npm install ejs which is a templating engine 
+		-http://www.embeddedjs.com/
+	2. install body-parser.
+		-https://github.com/expressjs/body-parser
+
+	3.
+
+	4.
+
 	

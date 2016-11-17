@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 
 //
-app,use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}))
 //third stop-- require three things, a secret which is used on the cookies, saveUNinit & resave save
 app.use(session({secret: 'secret string',
 				 saveUninititalized: true, 
