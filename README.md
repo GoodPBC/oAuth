@@ -84,8 +84,15 @@ An express passport oauth framework for future projects
 	2. install body-parser.
 		-https://github.com/expressjs/body-parser
 
-	3.
+	3. we require body parser in server.js and set the the templating engine to ejs for the views in our application. this is done in server.js
 
-	4.
+	4. we create 2 new files in the views folder. "index.ejs" & "user.ejs"
+		-in index.ejs we right out some HTML and bring in bootstrap and font awesome. We save the file as .ejs(plain text format)
+
+		--in signup.ejs we right out some HTML and bring in bootstrap and font awesome. We save the file as .ejs(plain text format) it is in this file that we use ejs to put a conditional in our HTML.
+
+	5. we navigate to the routes folder to edit our default route. we will update our res.send('Hello World') and instead we will res.render to render our ejs template -- when this is done fire up your server and navigate to your home page to make sure you are seeing your index template.
+
+	6. create the sign up route in your routes file
 
 	

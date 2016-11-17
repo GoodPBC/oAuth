@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 //anytime a client server transaction takes place this will be its second stop
 app.use(cookieParser());
 
-//
+//here we format  data 
 app.use(bodyParser.urlencoded({extended: true}))
 //third stop-- require three things, a secret which is used on the cookies, saveUNinit & resave save
 app.use(session({secret: 'secret string',
@@ -28,8 +28,9 @@ app.use(session({secret: 'secret string',
 				}));
 
 //here we set our view engine which establishes what our templating engine is and where our pages will reside
+// this is one of many the defualt for express is jade, handlebars can be used also
 //===========================================================================================================================================
-app.set('view engine', ejs); // this is one of many the defualt for express is jade, handlebars can be used also
+app.set('view engine', 'ejs'); 
 
 //ROUTES
 //intitial route
