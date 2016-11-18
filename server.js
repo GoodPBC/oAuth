@@ -14,12 +14,20 @@ var configDB = require('./config/database.js');
 //connect to mongoose
 mongoose.connect(configDB.url);
 
+//check to see if our connection to the database is successful or not
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+   console.log('we are connected to the our mongo database!');
+});
+
 //anytime we get a request to the server it will go through here first and log to the console
 app.use(morgan('dev'));
 //anytime a client server transaction takes place this will be its second stop
 app.use(cookieParser());
 
-//here we format  data 
+//here we format data for our html forms. we can send text strings arrays etc..
 app.use(bodyParser.urlencoded({extended: true}))
 //third stop-- require three things, a secret which is used on the cookies, saveUNinit & resave save
 app.use(session({secret: 'secret string',

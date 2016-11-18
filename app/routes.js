@@ -20,8 +20,8 @@ module.exports = function(app) {
 	app.post('/signup', function(req, res) {
 		debugger;
 		var newUser = new User();
-		newUser.local.username = req.body.email;
-		newUser.local.password = req.body.password;
+		newUser.local.username = req.body.email;	 // this is from our form in signup.ejs
+		newUser.local.password = req.body.password;	// this is from our form in signup.ejs
 		newUser.save(function(err){
 			if (err) {
 				throw err;

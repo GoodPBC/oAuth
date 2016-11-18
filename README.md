@@ -55,7 +55,7 @@ An express passport oauth framework for future projects
 	1. change the directory sturcture of your application
 		-add  "app" directory inside app create models directory and routes.js file
 		
-		-add confid directory and inside that create database.js
+		-add config directory and inside that create database.js
 
 		-create a views folder and leave it emptly for now.
 	
@@ -78,21 +78,23 @@ An express passport oauth framework for future projects
 		-in models we define 2 new routes one is the home route and the second is the user route that takes in params
 
 
-#phase 4 EJS Templating & views
-	1. npm install ejs which is a templating engine 
+#phase 4 EJS Templating & body parser
+	1. npm install ejs which is a templating engine. it is where our actual web pages will reside.
+		-ejs is a templating engine
 		-http://www.embeddedjs.com/
+	
 	2. install body-parser.
 		-https://github.com/expressjs/body-parser
 
-	3. we require body parser in server.js and set the the templating engine to ejs for the views in our application. this is done in server.js
+	3. we require body-parser in server.js, we app.use body-parser. we set the  templating engine to ejs for the views in our application. this is all done in server.js
 
 	4. we create 2 new files in the views folder. "index.ejs" & "user.ejs"
 		-in index.ejs we right out some HTML and bring in bootstrap and font awesome. We save the file as .ejs(plain text format)
 
-		--in signup.ejs we right out some HTML and bring in bootstrap and font awesome. We save the file as .ejs(plain text format) it is in this file that we use ejs to put a conditional in our HTML.
+		--in signup.ejs we right out some HTML and bring in bootstrap and font awesome. We save the file as .ejs(plain text format) it is in this file that we use ejs to put a conditional statement in our HTML. The conditional states that if the server sends a message with a length < 0, then display that message.
 
 	5. we navigate to the routes folder to edit our default route. we will update our res.send('Hello World') and instead we will res.render to render our ejs template -- when this is done fire up your server and navigate to your home page to make sure you are seeing your index template.
 
-	6. create the sign up route in your routes file. We will switch params to body to handle the form requests. The sign up route is post route. we are sending 
+	6. create the sign up route in your routes file. We will switch params to body to handle the form requests. The sign up route is post route. we are
 
 	
