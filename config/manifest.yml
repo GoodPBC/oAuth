@@ -1,0 +1,2 @@
+  services:
+    - my-compose-for-mongodb-service

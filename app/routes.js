@@ -5,7 +5,7 @@ var User = require('./models/user');
 // we are creating our new get route for the home page and exporting it. secondly we update the route to render the template for index ejs
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		//res.send('hello world'); //intial route
+		//res.send('hello world'); //initial route
 		res.render('index.ejs');
 	});
 
