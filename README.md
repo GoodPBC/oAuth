@@ -95,6 +95,14 @@ An express passport oauth framework for future projects
 
 	5. we navigate to the routes folder to edit our default route. we will update our res.send('Hello World') and instead we will res.render to render our ejs template -- when this is done fire up your server and navigate to your home page to make sure you are seeing your index template.
 
-	6. create the sign up route in your routes file. We will switch params to body to handle the form requests. The sign up route is post route. we are
+	6. create the sign up route in your routes file. We will switch params to body to handle the form requests. The 2nd sign up route is post route.
+
+# Phase 5 -- PassportJS & ConnectFlash
+
+    1. Install Passport -- Passport is a midleware for nodejs that uses strategies to communicate authenticity to the server.
+        - npm install all passport  --save
+        - npm install all passport-local --save (for local strategy)
+
+    ConnectFlash allows us to send messages to the client from the server
 
 	

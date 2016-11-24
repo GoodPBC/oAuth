@@ -12,24 +12,32 @@ module.exports = function(app) {
 
 	app.get('/signup', function(req, res) {
 		//here we render our signup and create the message object. the server sends the message to the ejs template
-		res.render('signup.ejs', {message: 'Victory'})
+		res.render('signup.ejs', {message: req.flash('signupMessage') });
 	});
+
+
 
 	// this post route is created to handle the actual submitting of the form data to POST to the server  from the form on the signup route. which is templated in 
 	// we copy from the route below and change .params to .body becuase the bodyparser puts our form data into the request.body object and so we can get it from the request object on every transaction
-	app.post('/signup', function(req, res) {
-		debugger;
-		var newUser = new User();
-		newUser.local.username = req.body.email;	 // this is from our form in signup.ejs
-		newUser.local.password = req.body.password;	// this is from our form in signup.ejs
-		newUser.save(function(err){
-			if (err) {
-				throw err;
-			}
-		}); 
-		res.redirect('/');	
-	});
 
+	// app.post('/signup', function(req, res) {
+	// 	var newUser = new User();
+	// 	newUser.local.username = req.body.email;	 // this is from our form in signup.ejs
+	// 	newUser.local.password = req.body.password;	// this is from our form in signup.ejs
+	// 	newUser.save(function(err){
+	// 		if (err) {
+	// 			throw err;
+	// 		}
+	// 	});
+	// 	res.redirect('/');
+	// });
+
+	//updated signup post route for  to include passportJS
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect: '/',
+		failureRedirect: '/signup',
+		failureFlash: true
+	}));
 
 	//here we are giving params to our route
 	app.get('/:username/:password', function(req, res) {
