@@ -3,12 +3,20 @@
 var User = require('./models/user');
 
 // we are creating our new get route for the home page and exporting it. secondly we update the route to render the template for index ejs
-module.exports = function(app) {
+module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
 		//res.send('hello world'); //initial route
 		res.render('index.ejs');
 	});
 
+    app.get('/login', function(req, res){
+        res.render('login.ejs', { message: req.flash('loginMessage') });
+    });
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/profile',
+        failureRedirect: '/login',
+        failureFlash: true
+    }));
 
 	app.get('/signup', function(req, res) {
 		//here we render our signup and create the message object. the server sends the message to the ejs template
@@ -39,6 +47,10 @@ module.exports = function(app) {
 		failureFlash: true
 	}));
 
+    app.get('/profile', isLoggedIn, function(req, res){
+        res.render('profile.ejs', { user: req.user });
+    });
+
 	//here we are giving params to our route
 	app.get('/:username/:password', function(req, res) {
 
@@ -47,7 +59,7 @@ module.exports = function(app) {
 		newUser.local.username = req.params.username;
 		newUser.local.password = req.params.password;
 
-		console.log(newUser.username + " " + newUser.password);
+		console.log(newUser.local.username + " " + newUser.local.password);
 
 		newUser.save(function(err){
 			if (err) {
@@ -57,4 +69,17 @@ module.exports = function(app) {
 		res.send('Success!');
 		
 	});
+
+    app.get('/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
+    })
+};
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect('/login');
 }

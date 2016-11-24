@@ -3,18 +3,22 @@
  */
 //create local strategy for passportJS
 
+//create local strategy
 var LocalStrategy = require('passport-local').Strategy;
 
+//require user model
 var User = require('../app/models/user');
 
+//export to rest of program
 module.exports = function(passport) {
 
+    //
     passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
 
     passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
+        User.findById(id, function (err, user) {   //search our User in mongodb
             done(err, user);
         });
     });

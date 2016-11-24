@@ -99,10 +99,17 @@ An express passport oauth framework for future projects
 
 # Phase 5 -- PassportJS & ConnectFlash
 
-    1. Install Passport -- Passport is a midleware for nodejs that uses strategies to communicate authenticity to the server.
+    1. Install Passport -- Passport is a middleware for nodejs that uses "strategies" to communicate authenticity to the server. Each Strategy reperesents a different authentication method
         - npm install all passport  --save
-        - npm install all passport-local --save (for local strategy)
+        - npm install all passport-local --save (for local strategy) -- this is our local strategy
 
-    ConnectFlash allows us to send messages to the client from the server
+
+    2. ConnectFlash allows us to send messages back to the client from the server. like bad logins and wrong passwords
+        - npm install connect-flash --save
+
+
+    3. open server.js and require packages that we installed
+    4.
+
 
 	

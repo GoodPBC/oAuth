@@ -32,24 +32,29 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 
 //here we format data for our html forms. we can send text strings arrays etc..
-app.use(bodyParser.urlencoded({extended: true}))
-//third stop-- require three things, a secret which is used on the cookies, saveUNinit & resave save
+app.use(bodyParser.urlencoded({extended: true}));
+
+//third stop-- require three things, a secret which is used on the cookies, save UNinit & resave save
 app.use(session({secret: 'secret string',
 				 saveUninitialized: true,
 				 resave: true}));
 
 
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); //start passport
+app.use(passport.session()); // piggy back off of session above. make sure passport is after session for
+// that reason
+
 app.use(flash());
+
+
 //here we set our view engine which establishes what our templating engine is and where our pages will reside
 // this is one of many the defualt for express is jade, handlebars can be used also
 //===========================================================================================================================================
 app.set('view engine', 'ejs'); 
 
 //ROUTES
-//intitial route
+//initial route
 //===========================================================================================================================================
 //this is a basic route that we used to set up our app it is to be replaced with the next section
 // app.use('/', function(req, res){
@@ -71,7 +76,7 @@ app.set('view engine', 'ejs');
 //===========================================================================================================================================
 //this is a basic route that we used to set up our app it is to be replaced with the next section
 //here we are telling the server that it should look for our routes in the app/routes path
-require('./app/routes.js')(app, passport);
+require('./app/routes.js')(app, passport); // pass passports to routes
 
 
 
