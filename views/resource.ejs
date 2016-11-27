@@ -1,0 +1,51 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Community Access Home Page</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body 		{ padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Community Access Home</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-lg-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> New Resource</h3>
+
+                <p>
+                <form action="/create" method="POST">
+                    Name:<br>
+                    <input type="text" placeholder="name" name="resourceName"> <br>
+                    Contact #:<br>
+                    <input type="text" placeholder="555-555-5555" name="contact"><br>
+                    Location:<br>
+                    <input type="text" placeholder="borough" name="resourceBorough"><br>
+                    Hours:<br>
+                    <input type="text" placeholder="zip" name="resourceZip"><br><br>
+
+                    <input type="radio" name="food" value="food" checked> Food<br>
+                    <input type="radio" name="health" value="health"> Health<br>
+                    <input type="radio" name="shelter" value="shelter"> Shelter<br><br>
+
+                    <button type="submit">Submit</button>
+                </form>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

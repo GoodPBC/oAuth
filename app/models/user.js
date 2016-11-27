@@ -1,14 +1,29 @@
 //here we bring in mongoose and setup our db schema for the for our mongodb
-
 var mongoose = require('mongoose');
-
-//here we define what our userSchema will consist of
-var userSchema = mongoose.Schema({
-	local: {
-		username: String,
-		password: String
-	}
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt');
+var userSchema = new Schema({
+    name: String,
+    local: {
+        username: { type: String, required: true, unique: true },
+        password: { type: String, required: true }
+    },
+    admin: Boolean,
+    location: String,
+    meta: {
+        age: Number,
+        website: String
+    },
+    created_at: Date,
+    updated_at: Date
 });
 
-//we export our model so we can access it elsewhere by requiring it
-module.exports = mongoose.model('users', userSchema);
+userSchema.methods.generateHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(9));
+}
+
+userSchema.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.local.password);
+}
+
+module.exports = mongoose.model('User', userSchema);

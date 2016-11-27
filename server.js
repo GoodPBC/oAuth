@@ -42,14 +42,14 @@ app.use(session({secret: 'secret string',
 
 
 app.use(passport.initialize()); //start passport
-app.use(passport.session()); // piggy back off of session above. make sure passport is after session for
+app.use(passport.session()); // piggy backs off of express session above. make sure passport is after first
 // that reason
 
 app.use(flash());
 
 
 //here we set our view engine which establishes what our templating engine is and where our pages will reside
-// this is one of many the defualt for express is jade, handlebars can be used also
+// this is one of many the default for express is jade, handlebars can be used also
 //===========================================================================================================================================
 app.set('view engine', 'ejs'); 
 
@@ -85,5 +85,5 @@ require('./app/routes.js')(app, passport); // pass passports to routes
 //===========================================================================================================================================
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port' + PORT)
+  console.log('Example app listening on port: ' + PORT)
 })

@@ -2,14 +2,15 @@
 //here we bring in our user schema
 var User = require('./models/user');
 
-// we are creating our new get route for the home page and exporting it. secondly we update the route to render the template for index ejs
+// we are creating our new get route for the home page and exporting it. secondly we update the route to render the template for index.ejs
 module.exports = function(app, passport) {
-	app.get('/', function(req, res) {
+
+	app.get('/', (req, res) => {
 		//res.send('hello world'); //initial route
 		res.render('index.ejs');
 	});
 
-    app.get('/login', function(req, res){
+    app.get('/login', (req, res) => {
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
     app.post('/login', passport.authenticate('local-login', {
@@ -18,7 +19,7 @@ module.exports = function(app, passport) {
         failureFlash: true
     }));
 
-	app.get('/signup', function(req, res) {
+	app.get('/signup', (req, res) => {
 		//here we render our signup and create the message object. the server sends the message to the ejs template
 		res.render('signup.ejs', {message: req.flash('signupMessage') });
 	});
@@ -42,12 +43,12 @@ module.exports = function(app, passport) {
 
 	//updated signup post route for  to include passportJS
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/',
+		successRedirect: '/profile',
 		failureRedirect: '/signup',
 		failureFlash: true
 	}));
-
-    app.get('/profile', isLoggedIn, function(req, res){
+	//secures profile route
+    app.get('/profile', isLoggedIn, (req, res) => {
         res.render('profile.ejs', { user: req.user });
     });
 
@@ -74,12 +75,33 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     })
-};
 
+    app.get('/resource', function(req, res) {
+        res.render('resource.ejs');
+    });
+
+    app.post('/create', isLoggedIn, function(req, res) {
+        var newResource = new Resource();
+        newResource.name.resourceName = req.params.resourceName;
+        newResource.name.contact = req.params.contact;
+        newResource.name.resourceBorough = req.params.resourceBorough;
+        newResource.name.resourceZip = req.params.resourceZip
+
+        console.log(newResource.name.resourceName + " " + newResource.name.contact + " " + newResource.name.resourceBorough + " " + newResource.name.resourceZip);
+
+        newResource.save(function(err){
+            if (err) {
+                throw err;
+            }
+        });
+        res.send('Success!');
+    });
+};
+//logic for profile route
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-
     res.redirect('/login');
 }
+
