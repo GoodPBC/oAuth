@@ -25,17 +25,16 @@
                 <p>
                 <form action="/create" method="POST">
                     Name:<br>
-                    <input type="text" placeholder="name" name="resourceName"> <br>
-                    Contact #:<br>
-                    <input type="text" placeholder="555-555-5555" name="contact"><br>
-                    Location:<br>
-                    <input type="text" placeholder="borough" name="resourceBorough"><br>
-                    Hours:<br>
-                    <input type="text" placeholder="zip" name="resourceZip"><br><br>
+                    <input type="text" placeholder="name" name="resourcename"> <br>
+                    Address:<br>
+                    <input type="text" placeholder="111 main street" name="strAddress"><br>
+                    Borough:<br>
+                    <input type="text" placeholder="borough" name="borough"><br>
+                    Zip Code:<br>
+                    <input type="number" placeholder="10001" name="zipCode" min="10000" max="99999"><br>
+                    Phone #:<br>
+                    <input type="tel" placeholder="555-555-5555" name="contact"><br><br>
 
-                    <input type="radio" name="food" value="food" checked> Food<br>
-                    <input type="radio" name="health" value="health"> Health<br>
-                    <input type="radio" name="shelter" value="shelter"> Shelter<br><br>
 
                     <button type="submit">Submit</button>
                 </form>

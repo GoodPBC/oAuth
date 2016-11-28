@@ -1,16 +1,17 @@
 
 //here we bring in our user schema
 var User = require('./models/user');
-
+//here we bring in our resource schema
+var Resource = require('./models/resource');
 // we are creating our new get route for the home page and exporting it. secondly we update the route to render the template for index.ejs
 module.exports = function(app, passport) {
 
-	app.get('/', (req, res) => {
+	app.get('/', function(req, res) {
 		//res.send('hello world'); //initial route
 		res.render('index.ejs');
 	});
 
-    app.get('/login', (req, res) => {
+    app.get('/login', function(req, res) {
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
     app.post('/login', passport.authenticate('local-login', {
@@ -19,7 +20,7 @@ module.exports = function(app, passport) {
         failureFlash: true
     }));
 
-	app.get('/signup', (req, res) => {
+	app.get('/signup', function(req, res) {
 		//here we render our signup and create the message object. the server sends the message to the ejs template
 		res.render('signup.ejs', {message: req.flash('signupMessage') });
 	});
@@ -48,7 +49,7 @@ module.exports = function(app, passport) {
 		failureFlash: true
 	}));
 	//secures profile route
-    app.get('/profile', isLoggedIn, (req, res) => {
+    app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', { user: req.user });
     });
 
@@ -76,18 +77,21 @@ module.exports = function(app, passport) {
         res.redirect('/');
     })
 
-    app.get('/resource', function(req, res) {
+    app.get('/resource', isLoggedIn, function(req, res) {
         res.render('resource.ejs');
     });
 
     app.post('/create', isLoggedIn, function(req, res) {
         var newResource = new Resource();
-        newResource.name.resourceName = req.params.resourceName;
-        newResource.name.contact = req.params.contact;
-        newResource.name.resourceBorough = req.params.resourceBorough;
-        newResource.name.resourceZip = req.params.resourceZip
+        newResource.name.resourceName = req.body.resourceName;
+        newResource.name.strAddress = req.body.strAddress;
+        newResource.name.borough = req.body.borough;
+        newResource.name.contact = req.body.contact;
+        newResource.name.latitude = req.body.latitude;
+        newResource.name.longitude = req.body.longitude;
+        newResource.name.zipCode = req.body.zipCode
 
-        console.log(newResource.name.resourceName + " " + newResource.name.contact + " " + newResource.name.resourceBorough + " " + newResource.name.resourceZip);
+        console.log(newResource.name.resourceName + " " + newResource.name.strAddress + " " + newResource.name.borough + " " + newResource.name.contact + " " + newResource.name.latitude + " " + newResource.name.longitude + " " + newResource.name.zipCode);
 
         newResource.save(function(err){
             if (err) {
